@@ -16,7 +16,7 @@ import math
 import time
 import os
 
-device = torch.device("mps")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # macbook : "mps"
 print(f"Using device: {device}")
 if device.type == "cuda":
@@ -550,7 +550,7 @@ EVAL_INTERVAL = 1000
 EVAL_STEPS = 10
 LOG_INTERVAL = 50
 
-model = torch.compile(model)
+#model = torch.compile(model)
 
 optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
